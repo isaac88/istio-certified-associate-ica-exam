@@ -1,8 +1,8 @@
 # Resilience and Fault Injection 20%
 
-* Configuring circuit breakers (with or without outlier detection)
-* Using resilience features
-* Creating fault injection
+* [Configuring circuit breakers (with or without outlier detection)](#configuring-circuit-breakers-with-or-without-outlier-detection)
+* [Using resilience features](#using-resilience-features)
+* [Creating fault injection](#creating-fault-injection)
 
 [Docs](https://istio.io/latest/docs/concepts/traffic-management/#network-resilience-and-testing)
 
@@ -315,6 +315,25 @@ $ kubectl logs -f deploy/sleep -c istio-proxy
 
 # You will see 5 times where it match with the     retries/attempts: 5:
 # "performing retry"
+
+# Check the how that VirtualService retries configuration is translate to Envoy configuration
+$ kubectl exec -it "$(kubectl get pod -l app=sleep -o jsonpath={.items..metadata.name})"  -c istio-proxy -- curl -X GET "localhost:15000/config_dump" |grep -A14 "outbound|80|v1|helloworld.default.svc.cluster.local"
+
+"cluster": "outbound|80|v1|helloworld.default.svc.cluster.local",
+"timeout": "0s",
+"retry_policy": {
+"retry_on": "5xx,reset,connect-failure,refused-stream", # retryOn
+"num_retries": 5, # attempts
+"per_try_timeout": "0.001s", # perTryTimeout
+"retry_host_predicate": [
+  {
+  "name": "envoy.retry_host_predicates.previous_hosts",
+  "typed_config": {
+    "@type": "type.googleapis.com/envoy.extensions.retry.host.previous_hosts.v3.PreviousHostsPredicate"
+  }
+  }
+],
+"host_selection_retry_max_attempts": "5"
 
 ```
 

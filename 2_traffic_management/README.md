@@ -1,13 +1,15 @@
 # Traffic Management 40%
 
-* Controlling network traffic flows within a service mesh
-* Configuring sidecar injection
-* Using the Gateway resource to configure ingress and egress traffic
-* Understanding how to use ServiceEntry resources for adding entries to internal service registry
-* Define traffic policies using DestinationRule
-* Configure traffic mirroring capabilities
+* [Controlling network traffic flows within a service mesh]()
+* [Configuring sidecar injection](#configuring-sidecar-injection)
+* [Using the Gateway resource to configure ingress and egress traffic](#using-the-gateway-resource-to-configure-ingress-and-egress-traffic)
+* [Understanding how to use ServiceEntry resources for adding entries to internal service registry](#understanding-how-to-use-serviceentry-resources-for-adding-entries-to-internal-service-registry)
+* [Define traffic policies using DestinationRule](#define-traffic-policies-using-destinationrule)
+* [Configure traffic mirroring capabilities](#configure-traffic-mirroring-capabilities)
 
 [Docs](https://istio.io/latest/docs/concepts/traffic-management/)
+
+[Configuration Reference](https://istio.io/latest/docs/reference/config/networking/)
 
 [Task - Exam](https://istio.io/latest/docs/tasks/traffic-management/)
 
@@ -353,7 +355,7 @@ $ kubectl logs -l istio=egressgateway -n istio-system
 
 ```
 
-## Understanding how to use ServiceEntry resources for adding entries to internal service registry
+## Understanding how to use ServiceEntry resources for adding entries to internal service registry
 
 [Docs](https://istio.io/latest/docs/reference/config/networking/service-entry/)
 
@@ -422,11 +424,11 @@ $ kubectl exec -n istio-system deploy/istiod -- \
 
 ```
 
-## Define traffic policies using DestinationRule
+## Define traffic policies using DestinationRule
 
 [Docs](https://istio.io/latest/docs/reference/config/networking/destination-rule/)
 
-### Load balancing
+### Load balancing
 
 [Load balancing](https://tetratelabs.github.io/istio-0to60/discovery/#load-balancing)
 
@@ -464,7 +466,7 @@ $ istioctl proxy-config cluster deploy/sleep \
   lbPolicy: RANDOM
 ```
 
-### Traffic distribution
+### Traffic distribution
 
 [Traffic distribution](https://tetratelabs.github.io/istio-0to60/discovery/#traffic-distribution)
 
@@ -731,5 +733,4 @@ $ kubectl logs "$V2_POD" -c httpbin
 ...
 127.0.0.6 - - [02/Jan/2024:10:20:00 +0000] "GET /headers HTTP/1.1" 200 562 "-" "curl/8.5.0"
 ...
-
 ```

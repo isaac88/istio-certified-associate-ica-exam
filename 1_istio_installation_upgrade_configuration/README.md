@@ -1,13 +1,14 @@
 # Istio Installation, Upgrade & Configuration 7%
 
-* Using the Istio CLI to install a basic cluster
-* Customizing the Istio installation with the IstioOperator API
-* Using overlays to manage Istio component settings
-
+* [Using the Istio CLI to install a basic cluster](#using-the-istio-cli-to-install-a-basic-cluster)
+* [Customizing the Istio installation with the IstioOperator API](#customizing-the-istio-installation-with-the-istiooperator-api)
+* [Using overlays to manage Istio component settings](#using-overlays-to-manage-istio-component-settings)
 
 ## Using the Istio CLI to install a basic cluster
 
 [Docs](https://istio.io/latest/docs/setup/install/istioctl/)
+
+[Configuration Reference](https://istio.io/latest/docs/reference/config/istio.operator.v1alpha1/)
 
 ```bash
 
@@ -84,7 +85,6 @@ $ istioctl verify-install
 # Helm (Optional)
 
 ```
-
 
 ## Customizing the Istio installation with the IstioOperator API
 

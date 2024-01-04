@@ -1,6 +1,6 @@
 # Istio Certified Associate (ICA)
 
-Istio Certified Associate exam preparation repo
+Istio Certified Associate exam preparation repository
 
 https://training.linuxfoundation.org/blog/istio-certified-associate-ica/
 https://training.linuxfoundation.org/certification/istio-certified-associate-ica/
@@ -10,13 +10,13 @@ https://training.linuxfoundation.org/certification/istio-certified-associate-ica
 * [Istio Installation, Upgrade & Configuration 7%](./1_istio_installation_upgrade_configuration/README.md)
 * [Traffic Management 40%](./2_traffic_management/README.md)
 * [Resilience and Fault Injection 20%](./3_resilience_and_fault_injection/README.md)
+* [Securing Workloads 20%](./4_securing_workloads/README.md)
 
 ## Pre-Requirements
 
 * [Docker Install](https://docs.docker.com/engine/install/)
 * [Colima Install](https://github.com/abiosoft/colima?tab=readme-ov-file#installation)
-
-- Local K8S Kubernetes environment up ad running
+* Local K8S Kubernetes environment up ad running (Colima[K3S])
 
 ```bash
 $ colima version
@@ -48,12 +48,13 @@ $ ./istio-1.18.2/bin/istioctl version -s --remote=false
 1.18.2
 ``````
 
+# External preparation resources
 
-# External Resources
-
+* [Istio official docs](https://istio.io/latest/docs)
 * [Istio Service Mesh Workshop](https://www.istioworkshop.io/)
 * [Istio 0 to 60 workshop: Video](https://academy.tetrate.io/courses/take/istio-0-to-60/lessons/38552925-watch-the-replay-of-istio-0-to-60-workshop)
 * [Istio 0 to 60 workshop: Exercices](https://tetratelabs.github.io/istio-0to60)
 * [Mesh week](https://github.com/solo-io/mesh-week)
 * [Mesh week: How to prepare for Istio Certified associate exam (ICA)](https://learncloudnative.com/blog/2023-10-10-meshweek)
-
+* [Istio Security Problems](https://istio.io/latest/docs/ops/common-problems/security-issues/)
+* [Istio Security Best Practices](https://istio.io/latest/docs/ops/best-practices/security/)
