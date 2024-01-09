@@ -1,0 +1,38 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: my-ingress
+spec:
+  selector:
+    app: my-ingressgateway # No specified
+  servers:
+  - port:
+      number: 80
+      name: http2
+      protocol: HTTP2
+    hosts:
+    - "*"
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: payments
+spec:
+  hosts:
+  - mycompany.com
+  gateways:
+  - my-ingress
+  http:
+  - name: "payments"
+    match:
+    - uri:
+        prefix: "/payments"
+    route:
+    - destination:
+        host: payments.default.svc.cluster.local
+        
+  - name: "frontend"
+    route:
+    - destination:
+        host: frontend.default.svc.cluster.local

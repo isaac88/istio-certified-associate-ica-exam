@@ -1,0 +1,23 @@
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+spec:
+  profile: minimal
+  components:
+    pilot:
+      k8s:
+        resources:
+          requests:
+            cpu: 750m
+            memory: 4096Mi
+    ingressGateways:
+    - name: payments-ingress
+      enabled: true
+      namespace: payments
+    - name: frontend-ingress
+      enabled: true
+      namespace: frontend
+    egressGateways:
+    - name: cluster-egress
+      enabled: true
+      namespace: egress
+

@@ -1,0 +1,29 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+spec:
+  hosts:
+  - orders
+  http:
+  - route:
+    - destination:
+        host: orders
+        subset: v1
+      weight: 30
+    - destination:
+        host: orders
+        subset: v2
+      weight: 70
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: orders
+spec:
+  host: orders
+  subsets:
+  - name: orders-v1
+    labels:
+      version: v1
+  - name: orders-v2
+    labels:
+      version: v2
