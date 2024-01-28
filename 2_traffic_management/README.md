@@ -21,10 +21,13 @@
 
 ### Ex1: Request Routing: Route to version 1
 
-**Deploy BookingInfo app**
-
 This task shows you how to route requests dynamically to multiple versions of a microservice.
-To route to one version only, you configure route rules that send traffic to default versions for the microservices.
+
+Requirements:
+
+* Deploy BookinInfo app.
+* Route all the BookingInfo services created to the version v1.
+* Check that all the traffic is going to the v1 version.
 
 <details>
   <summary>Solution</summary>
@@ -161,8 +164,12 @@ EOF
 
 ### Ex2: Route based on user identity
 
-Change the route configuration so that all traffic from a specific user is routed to a specific service version. 
-In this case, all traffic from a user named Jason will be routed to the service reviews:v2.
+Requirements:
+
+* Following the deployed BookinInfo app in the previous step.
+* Change the route configuration so that all traffic from a specific user is routed to a specific service version.
+  * All traffic from a user named Jason will be routed to the service reviews:v2.
+* Check that when the user is logged in with the user Jason, the reviews service is answering with version v2.
 
 <details>
   <summary>Solution</summary>
@@ -226,8 +233,13 @@ EOF
 
 ### Ex3: TCP Traffic Shifting: Weight-based TCP routing
 
+Requirements:
 
-You will send 100% of the TCP traffic to tcp-echo:v1. Then, you will route 20% of the TCP traffic to tcp-echo:v2 using Istio’s weighted routing feature.
+* You'll need to deploy from the istio samples the sleep and tcp-echo-services.
+* You need to create a dedicated TCP gateway for load balancing that TCP traffic.
+* You will send 100% of the TCP traffic to tcp-echo:v1.
+* After, You will route 20% of the TCP traffic to tcp-echo:v2.
+* Check that it working as expected.
 
 <details>
   <summary>Solution</summary>
@@ -355,9 +367,12 @@ one Sun Jan 21 16:31:59 UTC 2024
 
 ### Ex4: Traffic Shifting: Weight-based HTTP routing
 
-**Deploy BookingInfo app**
+Requirements:
 
-You will use send 50% of traffic to reviews:v1 and 50% to reviews:v3. Then, you will complete the migration by sending 100% of traffic to reviews:v3.
+* Deploy BookinInfo app
+* You will send 50% of traffic to reviews:v1 and 50% to reviews:v3 service.
+* Then, you will complete the migration by sending 100% of traffic to reviews:v3.
+* Check that is working as expected.
 
 <details>
   <summary>Solution</summary>
@@ -456,10 +471,14 @@ EOF
 
 [Setup - Installing the Sidecar](https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/)
 
-
 ### Ex5:Automatic sidecar injection
 
 #### Ex5.1: Inject httpbin service automatically at namespace level.
+
+Requirements:
+
+* Inject httpbin service automatically at namespace level.
+* Check that httpbin is automatically injected when it's deployed.
 
 <details>
   <summary>Solution</summary>
@@ -479,6 +498,12 @@ httpbin-65975d4c6f-9v5kr   2/2     Running   0          59s
 </details>
 
 #### Ex5.2: Inject httpbin service automatically at workload level. Only httpbin service should be automatically injected inside the default namespace.
+
+Requirements:
+
+* Inject httpbin service automatically at workload level. 
+  * Only httpbin service should be automatically injected inside the default namespace.
+* Check that httpbin service is ONLY automatically injected when it's deployed.
 
 <details>
   <summary>Solution</summary>
@@ -552,6 +577,11 @@ httpbin-65975d4c6f-9v5kr   2/2     Running   0          59s
 
 #### Ex5.3: Inject httpbin service manually.
 
+Requirements:
+
+* Inject httpbin service manually.
+* Check that httpbin service is automatically injected.
+
 <details>
   <summary>Solution</summary>
 
@@ -566,6 +596,11 @@ httpbin-65975d4c6f-9v5kr   2/2     Running   0          59s
 </details>
 
 #### Ex5.4: Inject httpbin service manually persisting the injection file.
+
+Requirements:
+
+* Inject httpbin service manually persisting the injection file.
+* Check that httpbin service is injected.
 
 <details>
   <summary>Solution</summary>
@@ -582,6 +617,11 @@ httpbin-65975d4c6f-9v5kr   2/2     Running   0          59s
 
 
 #### Ex5.5: Inject httpbin service already running manually
+
+Requirements:
+
+* Inject httpbin service already running manually.
+* Check that httpbin service is injected.
 
 <details>
   <summary>Solution</summary>
@@ -604,6 +644,11 @@ httpbin-5fd75cf66-7hcnp   2/2     Running   0          14s
 </details>
 
 #### Ex5.6: Inject httpbin service manually using local configuration files.
+
+Requirements:
+
+* Inject httpbin service manually using local configuration files.
+* Check that httpbin service is injected.
 
 <details>
   <summary>Solution</summary>
@@ -634,6 +679,12 @@ httpbin-5fd75cf66-7hcnp   2/2     Running   0          14s
 #### Ex6.1 Gateway: Ingress - Create an Ingress Gateway and expose the routes: /status and /delay from the httpbin service.
 
 [Task - Ingress](https://istio.io/latest/docs/tasks/traffic-management/ingress/)
+
+Requirements:
+
+* Create an Ingress Gateway
+* Expose the routes: /status and /delay from the httpbin service
+* Check those routes are working as expected on that Gateway.
 
 <details>
   <summary>Solution</summary>
@@ -720,8 +771,10 @@ EOF
 Configure Istio to allow access to external HTTP and HTTPS services from applications inside the mesh.
 
 Requirements:
-* Host: edition.cnn.com
-* The Egress Gateway name: edition-egressgateway
+* Create a dedicate Istio Egress gateway.
+  * Host: edition.cnn.com.
+* The Egress Gateway name: edition-egressgateway.
+* Check that the call to edition.cnn.com goes trough that egress gateway.
 
 <details>
   <summary>Solution</summary>
@@ -924,6 +977,7 @@ EOF
 ### Ex7.1: Add api.dropboxapi.com to the mesh [MESH_EXTERNAL]
 
 Requirements: 
+* Add api.dropboxapi.com to the mesh as [MESH_EXTERNAL]
 * Validate api.dropboxapi.com: is part of the mesh and it's working as expected.
 
 <details>
@@ -1024,9 +1078,10 @@ $ kubectl exec -n istio-system deploy/istiod -- curl -s localhost:15014/debug/re
   ```
 </details>
 
-### Ex7.2: Add mymongodb.somedomain to the mesh [MESH_INTERNAL]
+### Ex7.2: Add mymongodb.somedomain to the mesh as [MESH_INTERNAL]
 
 Requirements: 
+* Add mymongodb.somedomain to the mesh as [MESH_INTERNAL]
 * Validate mymongodb.somedomain: is part of the mesh and it's working as expected.
 
 <details>
@@ -1092,6 +1147,7 @@ EOF
 ### Ex8.1: Change the Load balancing mechanissim on the helloworld service to : RANDOM
 
 Requirements: 
+* Change the Load balancing mechanissim on the helloworld service to : RANDOM.
 * Validate that the new load balancing mechanissim is working as expected.
 
 [Load balancing](https://tetratelabs.github.io/istio-0to60/discovery/#load-balancing)
@@ -1147,7 +1203,8 @@ EOF
 ### Ex8.2: Traffic distribution spread proportially 50%/50% for helloworld service between v1 & v2 version
 
 Requirements: 
-* Validate that the traffic is spread proportially 50%/50% for helloworld service between v1 & v2 version
+* Spread proportially 50%/50% for helloworld service between v1 & v2 version.
+* Validate that the traffic is spread proportially 50%/50% for helloworld service between v1 & v2 version.
 
 [Traffic distribution](https://tetratelabs.github.io/istio-0to60/discovery/#traffic-distribution)
 
@@ -1243,7 +1300,8 @@ EOF
 [Docs](https://istio.io/latest/docs/tasks/traffic-management/mirroring/)
 
 Requirements: 
-* Send a proportion of mirror traffic to v2 of helloworld service
+* Configure traffic mirroring capabilities for helloworld service.
+* Send a proportion of mirror traffic to v2 of helloworld service.
 
 <details>
   <summary>Solution</summary>

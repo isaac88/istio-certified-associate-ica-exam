@@ -19,6 +19,7 @@ https://training.linuxfoundation.org/certification/istio-certified-associate-ica
 
 * [Docker Install](https://docs.docker.com/engine/install/)
 * [Colima Install](https://github.com/abiosoft/colima?tab=readme-ov-file#installation)
+* [yq](https://github.com/kislyuk/yq)
 * Local K8S Kubernetes environment up ad running (Colima[K3S])
 
 ```bash
@@ -38,6 +39,9 @@ $ kubectl version
 Client Version: v1.28.4
 Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
 Server Version: v1.28.3+k3s2
+
+$ yq --version
+yq 3.2.2
 ```
 
 - Istio CLI 1.18.2 installed 
