@@ -1,6 +1,6 @@
 # Traffic Management 40%
 
-* [Controlling network traffic flows within a service mesh]()
+* [Controlling network traffic flows within a service mesh](#controlling-network-traffic-flows-within-a-service-mesh)
 * [Configuring sidecar injection](#configuring-sidecar-injection)
 * [Using the Gateway resource to configure ingress and egress traffic](#using-the-gateway-resource-to-configure-ingress-and-egress-traffic)
 * [Understanding how to use ServiceEntry resources for adding entries to internal service registry](#understanding-how-to-use-serviceentry-resources-for-adding-entries-to-internal-service-registry)
