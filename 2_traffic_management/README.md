@@ -11,7 +11,7 @@
 
 [Configuration Reference](https://istio.io/latest/docs/reference/config/networking/)
 
-[Task - Exam](https://istio.io/latest/docs/tasks/traffic-management/)
+[Tasks - Exam](https://istio.io/latest/docs/tasks/traffic-management/)
 
 ## Controlling network traffic flows within a service mesh
 
@@ -236,10 +236,20 @@ EOF
 Requirements:
 
 * You'll need to deploy from the istio samples the sleep and tcp-echo-services.
-* You need to create a dedicated TCP gateway for load balancing that TCP traffic.
-* You will send 100% of the TCP traffic to tcp-echo:v1.
-* After, You will route 20% of the TCP traffic to tcp-echo:v2.
+* You need to create a dedicated TCP gateway for load balancing that TCP traffic to expose tcp-echo on the 9000 TCP port.
+  * You will send 100% of the TCP traffic to tcp-echo:v1.
+  * After, You will route 20% of the TCP traffic to tcp-echo:v2.
 * Check that it working as expected.
+
+<details>
+  <summary>How to verify</summary>
+
+  ```bash
+  # Verify
+  $ kubectl -n default exec -it "$(kubectl get pod -l app=sleep -n default -o jsonpath={.items..metadata.name})" -- sh -c "echo 'Hello' |nc -v <Istio-TCP-Gateway>.istio-system.svc.cluster.local 9000"
+  ```
+
+</details>
 
 <details>
   <summary>Solution</summary>
