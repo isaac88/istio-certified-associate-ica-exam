@@ -2,10 +2,10 @@
 
 * [Controlling network traffic flows within a service mesh](#controlling-network-traffic-flows-within-a-service-mesh)
 * [Configuring sidecar injection](#configuring-sidecar-injection)
-* [Using the Gateway resource to configure ingress and egress traffic](#using-the-gateway-resource-to-configure-ingress-and-egress-traffic)
-* [Understanding how to use ServiceEntry resources for adding entries to internal service registry](#understanding-how-to-use-serviceentry-resources-for-adding-entries-to-internal-service-registry)
-* [Define traffic policies using DestinationRule](#define-traffic-policies-using-destinationrule)
-* [Configure traffic mirroring capabilities](#configure-traffic-mirroring-capabilities)
+* [Using the Gateway resource to configure ingress and egress traffic](#ex6-using-the-gateway-resource-to-configure-ingress-and-egress-traffic)
+* [Understanding how to use ServiceEntry resources for adding entries to internal service registry](#ex7-understanding-how-to-use-serviceentry-resources-for-adding-entries-to-internal-service-registry)
+* [Define traffic policies using DestinationRule](#ex8-define-traffic-policies-using-destinationrule)
+* [Configure traffic mirroring capabilities](#ex9-configure-traffic-mirroring-capabilities-for-helloworld-service)
 
 [Docs](https://istio.io/latest/docs/concepts/traffic-management/)
 
